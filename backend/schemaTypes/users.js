@@ -9,10 +9,22 @@ export const users = ({
             type: "string"
         },
         {
-            name: "favorites",
-            title: "Favorites",
+            name: "favoriteMovies",
+            title: "Favorite Movies",
             type: "array",
-            of: [{type: "favorites"}]
+            of: [{type: "favoriteMovies"}]
+        },
+        {
+            name: "favoriteGenres",
+            title: "Favorite Genres",
+            type: "array",
+            of: [{type: "favoriteGenres"}]
+        },
+        {
+            name: "wishlistedMovie",
+            title: "Wishlist",
+            type: "array",
+            of: [{type: "wishlist"}]
         }
     ]
 })
