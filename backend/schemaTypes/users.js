@@ -1,26 +1,30 @@
-import {defineField, defineType} from 'sanity'
-
-export const users = {
-    name: "users",
-    title: "Users",
+export const users = ({
+    name: "user",
+    title: "user",
     type: "document",
     fields: [
         {
-            name: "Username",
+            name: "username",
+            title: "Username",
             type: "string"
         },
         {
-            name: "Favoritemovies",
-            type: "string"
+            name: "favoriteMovies",
+            title: "Favorite Movies",
+            type: "array",
+            of: [{type: "favoriteMovies"}]
         },
         {
-            name: "Watchlist",
-            type: "string"
+            name: "favoriteGenres",
+            title: "Favorite Genres",
+            type: "array",
+            of: [{type: "favoriteGenres"}]
         },
         {
-            name: "Favoriegenre",
-            type: "string"
+            name: "wishlistedMovie",
+            title: "Wishlist",
+            type: "array",
+            of: [{type: "wishlist"}]
         }
     ]
-
-}
+})
