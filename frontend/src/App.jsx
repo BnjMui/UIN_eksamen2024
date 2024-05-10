@@ -1,31 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { fetchAllUsers } from '../sanity/services/userServices'
 
 function App() {
-  const [genre, setGenre] = useState([])
+  const [user, setUser] = useState(null)
 
-  const getGenres = async() => {
-    const url = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres'
-    const options = {
-	    method: 'GET',
-      headers: {
-      'X-RapidAPI-Key': '83b786ce90mshb478f97f6df797cp1f84c1jsn1e5edab39268',
-      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    }
-    }
-
-  try {
-    const response = await fetch(url, options)
-    const result = await response.json()
-    console.log(result)
-    
-  } catch (error) {
-    console.error(error)
+  const getAllUsers = async () => {
+    const data = await fetchAllUsers()
+    console.log(data)
+    setUser(data)
   }
-  }
-  getGenres()
-
+  useEffect(()=>{
+    getAllUsers()
+  },[])
+  //console.log(user)
   return (
     <>
+    
     </>
   )
 }
