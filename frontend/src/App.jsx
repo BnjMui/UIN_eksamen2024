@@ -1,12 +1,21 @@
-import { useState } from 'react'
-import Dashboard from './components/Dashboard'
-import './styles/style.scss'
-function App() {
-  const [count, setCount] = useState(0)
+import { useEffect, useState } from 'react'
+import { fetchAllUsers } from '../sanity/services/userServices'
 
+function App() {
+  const [user, setUser] = useState(null)
+
+  const getAllUsers = async () => {
+    const data = await fetchAllUsers()
+    console.log(data)
+    setUser(data)
+  }
+  useEffect(()=>{
+    getAllUsers()
+  },[])
+  //console.log(user)
   return (
     <>
-    <Dashboard/>
+    
     </>
   )
 }
