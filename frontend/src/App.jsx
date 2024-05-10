@@ -7,7 +7,6 @@ function App() {
 
   const getAllUsers = async () => {
     const data = await fetchAllUsers()
-    console.log(data)
     setUser(data)
   }
   useEffect(()=>{
