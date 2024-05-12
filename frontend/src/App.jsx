@@ -16,7 +16,7 @@ function App() {
   //console.log(user)
   return (
     <>
-      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
+      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} user={user}></User>
     </>
   )
 }

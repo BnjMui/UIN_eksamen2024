@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { fetchLoginData } from "../../sanity/services/userServices"
-import Header from './Header'
+import Homepage from "./Homepage"
 
-export default function user ({setLoggedInUser, loggedInUser}) {
+export default function user ({setLoggedInUser, loggedInUser, user}) {
     
     const [currentUser, setCurrentUser] = useState("")
     const [users, setUsers] = useState([])
@@ -31,7 +31,7 @@ export default function user ({setLoggedInUser, loggedInUser}) {
          return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
        })} 
         {
-        loggedInUser !== "" ? <Header loggedInUser={loggedInUser} /> : null
+        loggedInUser !== "" ? <Homepage user={user} loggedInUser={loggedInUser} /> : null
        }
         </>
 
