@@ -18,7 +18,8 @@ function App() {
   return (
     <>
       <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      <Dashboard loggedInUser={loggedInUser} user={user}/>
+      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
+      
     </>
   )
 }
