@@ -23,13 +23,11 @@ export default function user () {
 
     return (
         <>
-
-        <h2>Hvem skal se i dag?</h2>
-        <p>Velg bruker</p>
-       {users?.map(data => {
-         return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
-       })} 
-        
+          <h2>Who is watching?</h2>
+          <p>Select user</p>
+          {users?.map(data => {
+            return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
+          })} 
         </>
 
     )
