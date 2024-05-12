@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchLoginData } from "../../sanity/services/userServices"
 
-export default function user () {
-    const [loggedInUser, setLoggedInUser] = useState("")
+export default function user ({setLoggedInUser}) {
     const [currentUser, setCurrentUser] = useState("")
     const [users, setUsers] = useState([])
 
@@ -19,7 +18,7 @@ export default function user () {
         localStorage.setItem(users, JSON.stringify(currentUser))
         setLoggedInUser(JSON.parse(localStorage.getItem(users)))
       },[currentUser] )
-      console.log(loggedInUser) //Må også fjernes når prosjektet er ferdig.
+      //console.log(loggedInUser) //Må også fjernes når prosjektet er ferdig.
 
     return (
         <>
@@ -29,7 +28,6 @@ export default function user () {
        {users?.map(data => {
          return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
        })} 
-        
         </>
 
     )
