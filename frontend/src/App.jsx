@@ -4,6 +4,7 @@ import User from './components/User'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [loggedInUser, setLoggedInUser] = useState("")
 
   const getAllUsers = async () => {
     const data = await fetchAllUsers()
@@ -15,7 +16,7 @@ function App() {
   //console.log(user)
   return (
     <>
-      <User></User>
+      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
     </>
   )
 }
