@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../sanity/services/userServices'
+import User from './components/User'
 
 function App() {
   const [user, setUser] = useState(null)
 
   const getAllUsers = async () => {
     const data = await fetchAllUsers()
-    console.log(data)
     setUser(data)
   }
   useEffect(()=>{
@@ -15,7 +15,7 @@ function App() {
   //console.log(user)
   return (
     <>
-    
+      <User></User>
     </>
   )
 }
