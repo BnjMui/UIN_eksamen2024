@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { fetchLoginData } from "../../sanity/services/userServices"
+import Header from './Header'
 
 export default function user ({setLoggedInUser, loggedInUser}) {
     
@@ -29,7 +30,9 @@ export default function user ({setLoggedInUser, loggedInUser}) {
        {users?.map(data => {
          return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
        })} 
-        
+        {
+        loggedInUser !== "" ? <Header loggedInUser={loggedInUser} /> : null
+       }
         </>
 
     )
