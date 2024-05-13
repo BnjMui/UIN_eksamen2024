@@ -3,10 +3,10 @@ export default function Header({loggedInUser}) {
         <header>
             <nav>
                 <ul>
-                    <li><h2>What To See?</h2></li>
-                    <li><button><h4>What do i want to watch?</h4></button></li>
-                    <li><p>Scroll through generes</p></li>
-                    <li><p>{loggedInUser}</p></li>
+                    <li><h1>What To See?</h1></li>
+                    <li><button><h2>What do i want to watch?</h2></button></li>
+                    <li><h3>Scroll through generes</h3></li>
+                    <li><h3>{loggedInUser}</h3></li>
                 </ul>
             </nav>
         </header>
