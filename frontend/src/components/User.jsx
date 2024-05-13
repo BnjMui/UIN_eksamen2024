@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import { fetchLoginData } from "../../sanity/services/userServices"
 import Homepage from "./Homepage"
 
-export default function user ({setLoggedInUser, loggedInUser, user}) {
-    
+export default function user ({setLoggedInUser}) {
     const [currentUser, setCurrentUser] = useState("")
     const [users, setUsers] = useState([])
 
@@ -20,7 +19,7 @@ export default function user ({setLoggedInUser, loggedInUser, user}) {
         localStorage.setItem(users, JSON.stringify(currentUser))
         setLoggedInUser(JSON.parse(localStorage.getItem(users)))
       },[currentUser] )
-      console.log(loggedInUser) //Må også fjernes når prosjektet er ferdig.
+      //console.log(loggedInUser) //Må også fjernes når prosjektet er ferdig.
 
     return (
         <>
@@ -30,9 +29,6 @@ export default function user ({setLoggedInUser, loggedInUser, user}) {
        {users?.map(data => {
          return <button key={data._id} onClick={()=> setCurrentUser(data.username)}>{data.username}</button>
        })} 
-        {
-        loggedInUser !== "" ? <Homepage user={user} loggedInUser={loggedInUser} /> : null
-       }
         </>
 
     )
