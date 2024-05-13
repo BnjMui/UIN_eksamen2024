@@ -36,7 +36,7 @@ export default function Homepage({loggedInUser, user}) {
 
   useEffect(()=>{
     fetchMovieById(WlMovieId)
-  })
+  },[])
 
   return (
     <main>
