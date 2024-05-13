@@ -85,11 +85,12 @@ export default function Dashboard({loggedInUser, user}){
 	    const response = await fetch(url, options)
 	    const result = await response.json()
 	    console.log(result)
-        
         API(result.results)
-        Amount(result.entries)
+        if(Amount !== null){
+            Amount(result.entries)
+        }
     } catch (error) {
-	    console.error(error)
+        console.error(error)
         }
     }
 
