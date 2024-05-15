@@ -17,3 +17,8 @@ export async function fetchLoginData() {
     }`)
     return data
 }
+
+export async function getGenres() {
+    const data = await client.fetch ('*[_type == "genre"]')
+    return data
+}

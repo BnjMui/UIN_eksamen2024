@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from 'react'
-import createClient from '@sanity/client'
+import React, { useState, useEffect } from 'react';
+import { getGenres } from "../../sanity/services/userServices"
 
-const Genre = () => {
-  const [Genres, setGenres] = useState([])
+const Genres = () => {
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    const client = createClient({
-      projectId: 'oaeilve4',
-      dataset: 'production',
-    })
+    const fetchGenres = async () => {
+      try {
+        const data = await getGenres() // Bruker getGenres-funksjonen for å hente sjangrene
+        console.log(data)
+        setGenres(data) // Oppdater sjangrene
+      } catch (error) {
+        console.error('Feil ved henting av sjangre:', error)
+      }
+    };
 
-    //Henter sjangre fra Sanity
-    client
-      .fetch('*[_type == "genre"]')
-      .then((data) => {
-        setGenres(data)
-      })
+    fetchGenres() //Kaller funksjonen når komponenten rendres
   }, [])
 
   return (
     <div>
-      <h2>Genres</h2>
+      <h2>Sjangre</h2>
       <ul>
-        {Genres.map((Genre) => (
-          <li key={Genre._id}>{Genre.genre}</li>
+      {genres?.map((genre, index) => (
+          <li key={index}>{genre.genre}</li>
         ))}
       </ul>
     </div>
   )
 }
 
-export default Genre
-
+export default Genres
