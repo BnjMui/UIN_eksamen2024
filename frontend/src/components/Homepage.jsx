@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Moviecard from "./Moviecard"
 
 export default function Homepage({loggedInUser, user}) {
   const [wishList, setWishList] = useState([])
@@ -47,11 +48,9 @@ export default function Homepage({loggedInUser, user}) {
         <article>
             <p>You have these movies in your watchlist:</p>
             {wishList?.map((e, i) => {
+              console.log(i)
                         return (
-                            <article key={i}>
-                                <img src={e.primaryImage.url} width={250} height={364}/>
-                                <p>{e.originalTitleText.text}</p>
-                            </article>
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
                         )
                     })}
         </article>

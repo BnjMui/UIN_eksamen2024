@@ -4,6 +4,7 @@ import User from './components/User'
 import Dashboard from './components/Dashboard'
 import Homepage from './components/Homepage'
 
+
 function App() {
   const [user, setUser] = useState(null)
   const [loggedInUser, setLoggedInUser] = useState("")
@@ -19,8 +20,8 @@ function App() {
   return (
     <>
       <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
-      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null}
+      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
+      {/*loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null*/}
       
     </>
   )
