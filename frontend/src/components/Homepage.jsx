@@ -28,8 +28,6 @@ export default function Homepage({loggedInUser, user}) {
   try {
     const response = await fetch(url, options)
     const result = await response.json()
-    console.log(result)
-      
       setWishList(result.results)
   } catch (error) {
     console.error(error)
@@ -52,9 +50,8 @@ export default function Homepage({loggedInUser, user}) {
             
             <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist"}</p>
             {wishList?.map((e, i) => {
-              console.log(i)
                         return (
-                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
                         )
                     })}
         </article>

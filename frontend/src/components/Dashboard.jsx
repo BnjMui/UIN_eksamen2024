@@ -111,7 +111,7 @@ export default function Dashboard({loggedInUser, user}){
                     {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
                     {APIWL?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
                             )
                         })} 
                 </article>
@@ -121,7 +121,7 @@ export default function Dashboard({loggedInUser, user}){
                         {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
                         {APIFM?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
                             )
                         })}
                 </article>
