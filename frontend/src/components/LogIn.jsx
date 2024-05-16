@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchLoginData } from "../../sanity/services/userServices"
-import Homepage from "./Homepage"
 
-export default function user ({setLoggedInUser}) {
+export default function LogIn ({setLoggedInUser}) {
     const [currentUser, setCurrentUser] = useState("")
     const [users, setUsers] = useState([])
 

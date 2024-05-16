@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../sanity/services/userServices'
-import User from './components/User'
-import Dashboard from './components/Dashboard'
-import Homepage from './components/Homepage'
+import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-
+import Homepage from './components/Homepage'
+import Dashboard from './components/Dashboard'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -17,24 +16,13 @@ function App() {
   useEffect(()=>{
     getAllUsers()
   },[])
-  //console.log(user)
   return (
-    <>
-    {loggedInUser == "" ? 
-    <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-    :null
-    }
-    {loggedInUser != "" ? 
-    <Layout loggedInUser={loggedInUser}/>
-    : null
-    }
-
-
-      {/* <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
-      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null} */}
-      
-    </>
+    <Layout loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}>
+      <Routes>
+        <Route path='/' element={<Homepage loggedInUser={loggedInUser} user={user}/>}/>
+        <Route path='/dashboard/:slug' element={<Dashboard loggedInUser={loggedInUser} user={user}/>}/>
+      </Routes>
+    </Layout>
   )
 }
 

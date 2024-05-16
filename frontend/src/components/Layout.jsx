@@ -1,9 +1,17 @@
 import Header from './Header'
-export default function Layout({loggedInUser}){
+import LogIn from './LogIn'
+export default function Layout({loggedInUser, setLoggedInUser, children}){
 
     return(
         <>
-        <Header loggedInUser={loggedInUser}/>
+        {loggedInUser == "" ? 
+            <LogIn setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></LogIn>
+            : 
+            <div>
+                <Header loggedInUser={loggedInUser}/>
+                {children}
+            </div>
+        }
         </>
     )
 }

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import Moviecard from "./Moviecard"
+import { useParams } from "react-router-dom"
 
 export default function Dashboard({loggedInUser, user}){
     const [amountFM, setAmountFM] = useState(0)
     const [amountWishlist, setAmountWishlist] = useState(0)
     const [APIFM, setAPIFM] = useState([])
     const [APIWL, setAPIWL] = useState([])
-    
+    const {slug} = useParams()
     let GCommon = false
     //Mapping current users data. AKA favorite movies and wishlisted movies and favorite genre of logged in user.
     const currentUserWishlist = []
@@ -20,7 +21,7 @@ export default function Dashboard({loggedInUser, user}){
         }
     })
     {user?.map((e) => {
-        if(e.username == "Martinius" && e.wishlistedMovie !== null) {
+        if(e.username == {slug} && e.wishlistedMovie !== null) {
             e.wishlistedMovie.map(e => {
                 if(currentUserWishlist.includes(e.movieId)) {
                     WlMovieId.push(e.movieId)
@@ -43,7 +44,7 @@ export default function Dashboard({loggedInUser, user}){
     })
     
     {user?.map((e) => {
-        if(e.username == "Martinius" && e.favoriteMovies !== null) {
+        if(e.username == {slug} && e.favoriteMovies !== null) {
           e.favoriteMovies.map(e => {
                 if(currentUserFM.includes(e.movieId)) {
                     FmMovieId.push(e.movieId)
@@ -100,49 +101,48 @@ export default function Dashboard({loggedInUser, user}){
     }
 
     return (
-        <>
-        <h1>Recomendations for user1 and user2</h1>
+        <main>
+            <h2>Recomendations for {loggedInUser} and {slug}</h2>
 
-        <section>
-            <article>
-                <h3>Catch up!</h3>
-                <p>You have {currentUserWishlist.length} movies in common on your wishlists.</p>
-                {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
-                {APIWL?.map((e, i) => {
-                        return (
-                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
-                        )
-                    })} 
-            </article>
-            <article>
-                <h3>Go safe!</h3>
-                <p>You have {currentUserFM.length} favourite movies in common</p>
-                    {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
-                    {APIFM?.map((e, i) => {
-                        return (
-                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
-                        )
-                    })}
-            </article>
-            <article>
-                <h3>Explore!</h3>
-                <p>You have these genres in common. Chech out what movies to choose from</p>
-                <ul>
-                    {user?.map((e, i) => {
-                        if(e.username !== loggedInUser && e.favoriteGenres !== null) {
-                            return (e.favoriteGenres.map((g, i) => {
-                                if(currentUserFG.includes(g.genre)){
-                                    GCommon = true
-                                    return <li key={i}>{g.genre}</li>
-                                }
-                            }))
-                        }
-                    })}
-                </ul>
-                    {GCommon == false ? <p>No common genres found.</p> : null}
-            </article>
-        </section>
-
-        </>
+            <section>
+                <article>
+                    <h3>Catch up!</h3>
+                    <p>You have {currentUserWishlist.length} movies in common on your wishlists.</p>
+                    {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
+                    {APIWL?.map((e, i) => {
+                            return (
+                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                            )
+                        })} 
+                </article>
+                <article>
+                    <h3>Go safe!</h3>
+                    <p>You have {currentUserFM.length} favourite movies in common</p>
+                        {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
+                        {APIFM?.map((e, i) => {
+                            return (
+                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                            )
+                        })}
+                </article>
+                <article>
+                    <h3>Explore!</h3>
+                    <p>You have these genres in common. Chech out what movies to choose from</p>
+                    <ul>
+                        {user?.map((e, i) => {
+                            if(e.username !== loggedInUser && e.favoriteGenres !== null) {
+                                return (e.favoriteGenres.map((g, i) => {
+                                    if(currentUserFG.includes(g.genre)){
+                                        GCommon = true
+                                        return <li key={i}>{g.genre}</li>
+                                    }
+                                }))
+                            }
+                        })}
+                    </ul>
+                        {GCommon == false ? <p>No common genres found.</p> : null}
+                </article>
+            </section>
+        </main>
     )
 }
