@@ -36,7 +36,9 @@ export default function Homepage({loggedInUser, user}) {
   }
 
   useEffect(()=>{
-    fetchMovieById(WlMovieId)
+    if(WlMovieId != 0){
+      fetchMovieById(WlMovieId)
+    }
   },[])
 
   return (
@@ -46,7 +48,8 @@ export default function Homepage({loggedInUser, user}) {
             <h4>Movies i would like to watch</h4>
         </article>
         <article>
-            <p>You have these movies in your watchlist:</p>
+            
+            <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist"}</p>
             {wishList?.map((e, i) => {
               console.log(i)
                         return (

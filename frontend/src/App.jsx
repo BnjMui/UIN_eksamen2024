@@ -20,8 +20,8 @@ function App() {
   return (
     <>
       <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
-      {/*loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null*/}
+      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
+      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null}
       
     </>
   )
