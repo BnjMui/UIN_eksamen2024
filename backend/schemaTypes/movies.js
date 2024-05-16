@@ -12,9 +12,15 @@ export const movies = ({
             type: "string"
         },
         {
-            name: "genre",
-            type: "reference",
-            to: [{type: "genre"}]
+            name: "movieGenres",
+            type: "array",
+            of: [
+                {
+                    name: "genres",
+                    type: "reference",
+                    to: [{type: "genre"}]
+                }
+            ]
         }
     ]
 })
