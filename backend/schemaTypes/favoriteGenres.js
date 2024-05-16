@@ -6,6 +6,9 @@ export const favoriteGenres = ({
         {
             name: "genre",
             type: "string"
-        }
+        },
     ]
 })
+
+  
+
