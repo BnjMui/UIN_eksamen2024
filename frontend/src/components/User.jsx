@@ -23,7 +23,6 @@ export default function user ({setLoggedInUser}) {
 
     return (
         <>
-
         <h2>Hvem skal se i dag?</h2>
         <p>Velg bruker</p>
        {users?.map(data => {

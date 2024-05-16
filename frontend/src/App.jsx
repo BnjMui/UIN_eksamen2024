@@ -3,6 +3,7 @@ import { fetchAllUsers } from '../sanity/services/userServices'
 import User from './components/User'
 import Dashboard from './components/Dashboard'
 import Homepage from './components/Homepage'
+import Layout from './components/Layout'
 
 
 function App() {
@@ -19,9 +20,19 @@ function App() {
   //console.log(user)
   return (
     <>
-      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
-      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null}
+    {loggedInUser == "" ? 
+    <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
+    :null
+    }
+    {loggedInUser != "" ? 
+    <Layout loggedInUser={loggedInUser}/>
+    : null
+    }
+
+
+      {/* <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
+      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
+      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null} */}
       
     </>
   )
