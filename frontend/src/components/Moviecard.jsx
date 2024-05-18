@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
     
     return (
         <Link to={`https://www.imdb.com/title/${movieId}/`} target="_blanc">
-        <article>
+        <article className="moviecardContent">
             <img src={imgUrl} width={250} height={364}/>
             <p>{titleText}</p>
         </article>
