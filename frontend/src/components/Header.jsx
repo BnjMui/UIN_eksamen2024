@@ -14,7 +14,7 @@ export default function Header({loggedInUser, setLoggedInUser}) {
         <header className="headerContent">
             <nav>
                 <ul>
-                    <li><h1>What To See?</h1></li>
+                    <li className="whatToSee"><h1>What To See?</h1></li>
                     <li><Link to={`/`}><button>What do i want to watch?</button></Link></li>
                     <li>Scroll through generes</li>
                     <li><RxAvatar />  {loggedInUser}</li>

@@ -1,0 +1,17 @@
+.homepageContent {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+
+    h2 {
+        width: 100%;
+    }
+
+    article {
+        width: 33%;
+        justify-content: center;
+    }
+
+    
+}
