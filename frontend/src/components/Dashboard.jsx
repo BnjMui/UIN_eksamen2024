@@ -3,8 +3,6 @@ import Moviecard from "./Moviecard"
 import { useParams } from "react-router-dom"
 
 export default function Dashboard({loggedInUser, user}){
-    const [amountFM, setAmountFM] = useState(0)
-    const [amountWishlist, setAmountWishlist] = useState(0)
     const [APIFM, setAPIFM] = useState([])
     const [APIWL, setAPIWL] = useState([])
     const {slug} = useParams()
@@ -68,16 +66,16 @@ export default function Dashboard({loggedInUser, user}){
     //Counters for how many items in common.
     useEffect(()=>{
         if(currentUserFM != 0){
-            fetchMovieById(FmMovieId, setAPIFM, setAmountFM)
+            fetchMovieById(FmMovieId, setAPIFM)
         }
         if(currentUserWishlist != 0){
-            fetchMovieById(WlMovieId, setAPIWL, setAmountWishlist)
+            fetchMovieById(WlMovieId, setAPIWL)
         }
     },[])
 
     //Function for API-reference
 
-    const fetchMovieById = async(e, API, Amount) => {
+    const fetchMovieById = async(e, API) => {
         const url = `https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=${e}`
         const options = {
 	        method: 'GET',
@@ -92,14 +90,10 @@ export default function Dashboard({loggedInUser, user}){
 	    const result = await response.json()
 	    console.log(result)
         API(result.results)
-        if(Amount !== null){
-            Amount(result.entries)
-        }
     } catch (error) {
         console.error(error)
         }
     }
-
     return (
         <main>
             <h2>Recomendations for {loggedInUser} and {slug}</h2>
@@ -107,7 +101,7 @@ export default function Dashboard({loggedInUser, user}){
             <section>
                 <article>
                     <h3>Catch up!</h3>
-                    <p>You have {currentUserWishlist.length} movies in common on your wishlists.</p>
+                    <p>You have {WlMovieId.length} movies in common on your wishlists.</p>
                     {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
                     {APIWL?.map((e, i) => {
                             return (
@@ -117,7 +111,7 @@ export default function Dashboard({loggedInUser, user}){
                 </article>
                 <article>
                     <h3>Go safe!</h3>
-                    <p>You have {currentUserFM.length} favourite movies in common</p>
+                    <p>You have {FmMovieId.length} favourite movies in common</p>
                         {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
                         {APIFM?.map((e, i) => {
                             return (
