@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../sanity/services/userServices'
 import User from './components/User'
 import Dashboard from './components/Dashboard'
-import Genre from './components/genre'
+import Homepage from './components/Homepage'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -19,9 +20,8 @@ function App() {
   return (
     <>
       <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null}
-
-      <Genre/>
+      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
+      {loggedInUser !== "" ? <Homepage loggedInUser={loggedInUser} user={user}/> : null}
       
     </>
   )

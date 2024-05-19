@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Moviecard from "./Moviecard"
 
 export default function Dashboard({loggedInUser, user}){
     const [amountFM, setAmountFM] = useState(0)
@@ -65,8 +66,12 @@ export default function Dashboard({loggedInUser, user}){
     })
     //Counters for how many items in common.
     useEffect(()=>{
-        fetchMovieById(FmMovieId, setAPIFM, setAmountFM)
-        fetchMovieById(WlMovieId, setAPIWL, setAmountWishlist)
+        if(currentUserFM != 0){
+            fetchMovieById(FmMovieId, setAPIFM, setAmountFM)
+        }
+        if(currentUserWishlist != 0){
+            fetchMovieById(WlMovieId, setAPIWL, setAmountWishlist)
+        }
     },[])
 
     //Function for API-reference
@@ -85,11 +90,12 @@ export default function Dashboard({loggedInUser, user}){
 	    const response = await fetch(url, options)
 	    const result = await response.json()
 	    console.log(result)
-        
         API(result.results)
-        Amount(result.entries)
+        if(Amount !== null){
+            Amount(result.entries)
+        }
     } catch (error) {
-	    console.error(error)
+        console.error(error)
         }
     }
 
@@ -100,27 +106,21 @@ export default function Dashboard({loggedInUser, user}){
         <section>
             <article>
                 <h3>Catch up!</h3>
-                <p>You have {amountWishlist} movies in common on your wishlists.</p>
-                {amountWishlist === 0 ? <p>No common movies in wishlist.</p> : null}
+                <p>You have {currentUserWishlist.length} movies in common on your wishlists.</p>
+                {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
                 {APIWL?.map((e, i) => {
                         return (
-                            <article key={i}>
-                                <img src={e.primaryImage.url} width={250} height={364}/>
-                                <p>{e.originalTitleText.text}</p>
-                            </article>
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
                         )
                     })} 
             </article>
             <article>
                 <h3>Go safe!</h3>
-                <p>You have {amountFM} favourite movies in common</p>
-                    {amountFM === 0 ? <p>No favorite movies in common.</p> : null}
+                <p>You have {currentUserFM.length} favourite movies in common</p>
+                    {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
                     {APIFM?.map((e, i) => {
                         return (
-                            <article key={i}>
-                                <img src={e.primaryImage.url} width={250} height={364}/>
-                                <p>{e.originalTitleText.text}</p>
-                            </article>
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
                         )
                     })}
             </article>
