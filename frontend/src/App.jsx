@@ -24,6 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage loggedInUser={loggedInUser} user={user}/>}/>
         <Route path='/dashboard/:slug' element={<Dashboard loggedInUser={loggedInUser} user={user}/>}/>
+        <Route path='/genres' element={<Genre loggedInUser={loggedInUser} user={user}/>}/>
       </Routes>
     </Layout>
     </>
