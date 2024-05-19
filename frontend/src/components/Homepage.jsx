@@ -19,7 +19,7 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
     if(WlMovieId != 0){
       fetchMovieById(WlMovieId, setWishList)
     }
-  },[])
+  },[loggedInUser, fetchMovieById])
 
   return (
     <main className="homepageContent">
@@ -29,7 +29,7 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
             <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist:"}</p>
             {wishList?.map((e, i) => {
                         return (
-                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                         )
                     })}
         </section>

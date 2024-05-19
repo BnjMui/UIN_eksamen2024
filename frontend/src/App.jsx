@@ -49,7 +49,7 @@ try {
         <Route path='/' element={<Homepage loggedInUser={loggedInUser} user={user} fetchMovieById={fetchMovieById}/>}/>
         <Route path='/dashboard/:slug' element={<Dashboard loggedInUser={loggedInUser} user={user} fetchMovieById={fetchMovieById}/>}/>
         <Route path='/genres' element={<Genre loggedInUser={loggedInUser} user={user}/>}/>
-        <Route path='/genres/:slug' element={<GenreMovie loggedInUser={loggedInUser} user={user} fetchMovieById={fetchMovieById}/>}/>
+        <Route path='/genres/:slug' element={<GenreMovie loggedInUser={loggedInUser} user={user} fetchMovieById={fetchMovieById}/>} user={user}/>
       </Routes>
     </Layout>
     </>

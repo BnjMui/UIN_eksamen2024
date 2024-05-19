@@ -3,7 +3,7 @@ import { fetchMovies } from '../../sanity/services/genreServices'
 import Moviecard from './Moviecard'
 import { useParams } from 'react-router-dom'
 
-export default function GenreMovie({fetchMovieById}) {
+export default function GenreMovie({fetchMovieById, loggedInUser, user}) {
     const {slug} = useParams()
     const [genreMovies, setGenreMovies] = useState([])
     const [movieIdApi, setMovieIdApi] = useState([])
@@ -43,7 +43,7 @@ export default function GenreMovie({fetchMovieById}) {
             <h2>Showing {slug} movies</h2>
             {ApiMovie.map((e, i) => {
                 return(
-                    <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id}/>
+                    <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                 )
             })}
         </section>

@@ -77,7 +77,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                     {currentUserWishlist.length == 0 ? <p>No common movies in wishlist.</p> : null}
                     {APIWL?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} />
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                             )
                         })} 
                 </article>
@@ -87,7 +87,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                         {currentUserFM.length == 0 ? <p>No favorite movies in common.</p> : null}
                         {APIFM?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} />
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                             )
                         })}
                 </article>
@@ -100,7 +100,9 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                                 return (e.favoriteGenres.map((g, i) => {
                                     if(currentUserFG.includes(g.genre)){
                                         GCommon = true
-                                        return <li key={i}>{g.genre}</li>
+                                        return <li key={i}><Link to={`/genres/${g.genre}`}>
+                                        <p>{g.genre}</p>
+                                      </Link></li>
                                     }
                                 }))
                             }
