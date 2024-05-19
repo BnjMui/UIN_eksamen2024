@@ -26,9 +26,6 @@ function App() {
         <Route path='/dashboard/:slug' element={<Dashboard loggedInUser={loggedInUser} user={user}/>}/>
       </Routes>
     </Layout>
-      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
-      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
-      {loggedInUser !== "" ? <Genre loggedInUser={loggedInUser} user={user}/> : null} 
     </>
   )
 }
