@@ -35,7 +35,7 @@ export default function Genre({loggedInUser, user}) {
     }
   }
   return (
-    <section>
+    <section className='genreContent'>
       <h2>Sjangre</h2>
       <ul>
       {genres?.map((genre, index) => (

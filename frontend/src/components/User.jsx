@@ -21,11 +21,13 @@ export default function LogIn ({setLoggedInUser}) {
       }
     return (
         <>
-        <h2>Hvem skal se i dag?</h2>
-        <p>Velg bruker</p>
-       {users?.map(data => {
-         return <button key={data._id} onClick={()=> handleLogIn(data.username)}>{data.username}</button>
-       })} 
+        <article className="loginContent">
+          <h2>Who is watching?</h2>
+          <p>Select user</p>
+          {users?.map(data => {
+          return <button key={data._id} onClick={()=> handleLogIn(data.username)}>{data.username}</button>
+          })} 
+        </article>
         </>
 
     )
