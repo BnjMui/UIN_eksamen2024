@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Header from './Header'
-import LogIn from './LogIn'
+import User from './User'
 export default function Layout({loggedInUser, setLoggedInUser, children}){
 
     useEffect(() => {
@@ -9,12 +9,10 @@ export default function Layout({loggedInUser, setLoggedInUser, children}){
             setLoggedInUser(storedUser)
         }
     },[])
-    console.log(localStorage.getItem(`user`))
-    //console.log(loggedInUser)
     return(
         <>
         {loggedInUser === "" ? 
-            <LogIn setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></LogIn>
+            <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
             : 
             <div>
                 <Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>

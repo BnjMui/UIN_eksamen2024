@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Moviecard from "./Moviecard"
 import { Link } from "react-router-dom"
 
-export default function Homepage({loggedInUser, user}) {
+export default function Homepage({loggedInUser, user, fetchMovieById}) {
   const [wishList, setWishList] = useState([])
   
   let WlMovieId = []
@@ -14,29 +14,10 @@ export default function Homepage({loggedInUser, user}) {
             }) : null
         }
     })
-  
-  const fetchMovieById = async(e) => {
-      const url = `https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=${e}`
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': '83b786ce90mshb478f97f6df797cp1f84c1jsn1e5edab39268',
-          'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-        }
-      }
-
-  try {
-    const response = await fetch(url, options)
-    const result = await response.json()
-      setWishList(result.results)
-  } catch (error) {
-    console.error(error)
-      }
-  }
 
   useEffect(()=>{
     if(WlMovieId != 0){
-      fetchMovieById(WlMovieId)
+      fetchMovieById(WlMovieId, setWishList)
     }
   },[])
 

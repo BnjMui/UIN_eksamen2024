@@ -14,11 +14,27 @@ export default function Header({loggedInUser, setLoggedInUser}) {
         <header className="headerContent">
             <nav>
                 <ul>
-                    <li className="whatToSee"><h1>What To See?</h1></li>
-                    <li><Link to={`/`}><button>What do i want to watch?</button></Link></li>
-                    <li>Scroll through generes</li>
+                    <li className="whatToSee">
+                        <Link to={'/'} >
+                            <h1>What To See?</h1>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={`/`}>
+                            <button>What do i want to watch?</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/genres'>
+                            Scroll through generes
+                        </Link>
+                    </li>
                     <li><RxAvatar />  {loggedInUser}</li>
-                    <li><Link to={`/`}><button onClick={()=>{handleLogOut()}}>Log out</button></Link></li>
+                    <li>
+                        <Link to={`/`}>
+                            <button onClick={()=>{handleLogOut()}}>Log out</button>
+                            </Link>
+                        </li>
                 </ul>
             </nav>
         </header>
