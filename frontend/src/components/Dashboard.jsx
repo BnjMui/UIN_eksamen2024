@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Moviecard from "./Moviecard"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 export default function Dashboard({loggedInUser, user, fetchMovieById}){
     const [APIFM, setAPIFM] = useState([])

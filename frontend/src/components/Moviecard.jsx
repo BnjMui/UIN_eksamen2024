@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { updateFavoriteMovies, updateWishList } from "../../sanity/services/userServices"
-import { wishlist } from "../../../backend/schemaTypes/wishlist"
 
  export default function Moviecard ({imgUrl, titleText, movieId, loggedInUser, user}) {
      const [userFavoriteMovies, setUserFavoriteMovies] = useState([])
