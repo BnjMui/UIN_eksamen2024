@@ -21,7 +21,7 @@ export default function Header({loggedInUser, setLoggedInUser}) {
                     </li>
                     <li>
                         <Link to={`/`}>
-                            <button>What do i want to watch?</button>
+                            <button className="button">What do i want to watch?</button>
                         </Link>
                     </li>
                     <li>
@@ -32,7 +32,7 @@ export default function Header({loggedInUser, setLoggedInUser}) {
                     <li><RxAvatar />  {loggedInUser}</li>
                     <li>
                         <Link to={`/`}>
-                            <button onClick={()=>{handleLogOut()}}>Log out</button>
+                            <button className="button" onClick={()=>{handleLogOut()}}>Log out</button>
                             </Link>
                         </li>
                 </ul>

@@ -24,7 +24,7 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
   return (
     <main className="homepageContent">
         <h2>Hello, {loggedInUser}</h2>
-        <section className="a">
+        <section>
             <h3>Movies i would like to watch</h3>
             <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist:"}</p>
             {wishList?.map((e, i) => {
@@ -33,13 +33,15 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
                         )
                     })}
         </section>
-        <section className="b">
+        <section className="watchWith">
             <h3>Im going to watch with...</h3>
-            {user?.map((data, i) => {
-              if (data.username !== loggedInUser){
-                return <Link key={i} to={`/dashboard/${data.username}`}> {data.username}</Link>
-              }
-            })}
+            <ul>
+              {user?.map((data, i) => {
+                if (data.username !== loggedInUser){
+                  return <li><Link key={i} to={`/dashboard/${data.username}`}> {data.username}</Link></li>
+                }
+              })}
+            </ul>
         </section>
     </main>
   )

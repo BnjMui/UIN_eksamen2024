@@ -1,8 +1,8 @@
 .homepageContent {
-
     display: flex;
     flex-wrap: wrap;
     margin: 1rem;
+    justify-content: center;
 
     h2 {
         width: 100%;
@@ -12,7 +12,6 @@
         width: 50%;
     }
 
-
     section {
         width: 50%;
         display: flex;
@@ -20,21 +19,44 @@
         align-items: baseline;
     }
 
-    .b {
-            display: flex;
-
-        h3 {
-            justify-content: end;
-            display: flex;
-        }
-
-        a {
-            color: black;
-            padding: .5rem;
-            margin: .5rem;
-        }
-        
+    a {
+        color: black;
     }
 
+    .watchWith {
+        flex-direction: column;
+
+        h3 {
+            width: 100%;
+        }
+    }
+
+    .moviecardContent {
+        background-color: #e1e1e1;
+        padding: 1rem;
+        margin: 1rem;
+
+        img {
+            max-width: 250;
+            max-height: 365;
+        }
+    }
+
+    @media only screen and (min-width: 200px) and (max-width: 1200px){
+
+        section {
+            width: fit-content;
+            justify-content: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .homepageContent {
+            justify-content: center;
+        }
+
+    }
     
 }

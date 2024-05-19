@@ -1,5 +1,4 @@
 .headerContent {
-     
     background-color: #e1e1e1;
     margin: 0;
 
@@ -30,3 +29,27 @@
     width: 40%;
     color: black;
 }
+
+@media only screen and (min-width: 200px) and (max-width: 1200px){
+
+    .whatToSee {
+        width: fit-content;
+    }
+
+    .headerContent {
+
+        ul {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 840px){
+
+    ul li {
+        width: 100%;
+    }
+}
+

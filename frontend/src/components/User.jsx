@@ -25,7 +25,7 @@ export default function LogIn ({setLoggedInUser}) {
           <h2>Who is watching?</h2>
           <p>Select user</p>
           {users?.map(data => {
-          return <button key={data._id} onClick={()=> handleLogIn(data.username)}>{data.username}</button>
+          return <button className="button" key={data._id} onClick={()=> handleLogIn(data.username)}>{data.username}</button>
           })} 
         </article>
         </>
