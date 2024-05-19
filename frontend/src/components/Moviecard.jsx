@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { updateFavoriteMovies, updateWishList } from "../../sanity/services/userServices"
+import { wishlist } from "../../../backend/schemaTypes/wishlist"
 
  export default function Moviecard ({imgUrl, titleText, movieId, loggedInUser, user}) {
      const [userFavoriteMovies, setUserFavoriteMovies] = useState([])
@@ -14,12 +15,12 @@ import { updateFavoriteMovies, updateWishList } from "../../sanity/services/user
                 e.favoriteMovies?.map(f => {
                     favoriteMovies.push(f.movieId)
                 })
-                e.wishlistedMovies?.map(f => {
+                e.wishlistedMovie?.map(f => {
                     wishlistedMovies.push(f.movieId)
                 })
             }
         })
-
+        console.log(wishlistedMovies)
         setUserFavoriteMovies(favoriteMovies)
         setUserWishlistedMovies(wishlistedMovies)
      },[user, loggedInUser])
@@ -68,7 +69,7 @@ import { updateFavoriteMovies, updateWishList } from "../../sanity/services/user
         : 
         <p>Favorites</p> }
 
-        {userWishlistedMovies != movieId ? userFavoriteMovies.includes(movieId) ?
+        {!userWishlistedMovies.includes(movieId) ? userFavoriteMovies.includes(movieId) ?
         null
         :
         <button onClick={() => {handleWishlistSubmit(movieId, titleText)}}>Add to wishlist</button> 
