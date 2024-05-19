@@ -16,7 +16,7 @@ export const movies = ({
             type: "array",
             of: [
                 {
-                    name: "genres",
+                    name: "genre",
                     type: "reference",
                     to: [{type: "genre"}]
                 }
