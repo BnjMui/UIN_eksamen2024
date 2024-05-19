@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Moviecard from "./Moviecard"
+import { Link } from "react-router-dom"
 
 export default function Homepage({loggedInUser, user}) {
   const [wishList, setWishList] = useState([])
@@ -27,8 +28,6 @@ export default function Homepage({loggedInUser, user}) {
   try {
     const response = await fetch(url, options)
     const result = await response.json()
-    console.log(result)
-      
       setWishList(result.results)
   } catch (error) {
     console.error(error)
@@ -45,23 +44,23 @@ export default function Homepage({loggedInUser, user}) {
     <main>
         <h2>Hello, {loggedInUser}</h2>
         <article>
-            <h4>Movies i would like to watch</h4>
+            <h3>Movies i would like to watch</h3>
         </article>
         <article>
             
             <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist"}</p>
             {wishList?.map((e, i) => {
-              console.log(i)
                         return (
-                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} />
+                            <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
                         )
                     })}
         </article>
         <article>
             <h3>Im going to watch with...</h3>
             {user?.map((data, i) => {
-            if (data.username !== loggedInUser)
-            return <p key={i} >{data.username}</p>
+            if (data.username !== loggedInUser){
+              return <Link key={i} to={`/dashboard/${data.username}`}>{data.username}</Link>
+            }
           })}
         </article>
     </main>
