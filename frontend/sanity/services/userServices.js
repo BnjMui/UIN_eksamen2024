@@ -1,4 +1,4 @@
-import { client} from "../client"
+import { client, writeClient} from "../client"
 
 export async function fetchAllUsers() {
     const data = await client.fetch (`*[ _type == "user" ]{
@@ -18,7 +18,15 @@ export async function fetchLoginData() {
     return data
 }
 
-export async function getGenres() {
-    const data = await client.fetch ('*[_type == "genre"]')
-    return data
+export async function updateFavoriteGenres(userId, genre) {
+    const result = await writeClient.patch(userId)
+    .setIfMissing({favoriteGenres: []})
+    .append("favoriteGenres", [{genre: genre}])
+    .commit
+    ({autoGenerateArrayKeys: true})
+    .then(() => {return "Success"})
+    .catch((error) => {return "Error: " + error.message})
+
+    return result
 }
+

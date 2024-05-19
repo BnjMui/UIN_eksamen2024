@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { getGenres } from '../../sanity/services/userServices'
+import {updateFavoriteGenres} from '../../sanity/services/userServices'
+import { fetchGenres } from '../../sanity/services/genreServices'
 
-const Genres = () => {
+export default function Genre({loggedInUser, user}) {
   const [genres, setGenres] = useState([])
 
   useEffect(() => {
-    const fetchGenres = async () => {
+    const getGenres = async () => {
       try {
-        const data = await getGenres() // Bruker getGenres-funksjonen for å hente sjangrene
+        const data = await fetchGenres() // Bruker getGenres-funksjonen for å hente sjangrene
         console.log(data)
         setGenres(data) // Oppdater sjangrene
       } catch (error) {
@@ -15,19 +16,32 @@ const Genres = () => {
       }
     }
 
-    fetchGenres() //Kaller funksjonen når komponenten rendres
+    getGenres() //Kaller funksjonen når komponenten rendres
+
   }, [])
 
+  const handleSubmit = async(e, user) => {
+    let userId = ""
+    user.map(u => {
+      if(u.username == loggedInUser){
+        userId = u._id
+      }
+    })
+    const result = await updateFavoriteGenres(userId, e)
+    if(result == "Success") {
+      console.log("Success")
+    } else {
+      console.log(result)
+    }
+  }
   return (
     <section>
       <h2>Sjangre</h2>
       <ul>
       {genres?.map((genre, index) => (
-          <li key={index}>{genre.genre}</li>
+          <li key={index} onClick={() => handleSubmit(genre.genre, user)}>{genre.genre}</li>
         ))}
       </ul>
     </section>
   )
 }
-
-export default Genres

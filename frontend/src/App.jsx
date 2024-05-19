@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../sanity/services/userServices'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-import Homepage from './components/Homepage'
 import Dashboard from './components/Dashboard'
+import Homepage from './components/Homepage'
+import Genre from './components/Genre'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -17,12 +19,17 @@ function App() {
     getAllUsers()
   },[])
   return (
+    <>
     <Layout loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}>
       <Routes>
         <Route path='/' element={<Homepage loggedInUser={loggedInUser} user={user}/>}/>
         <Route path='/dashboard/:slug' element={<Dashboard loggedInUser={loggedInUser} user={user}/>}/>
       </Routes>
     </Layout>
+      <User setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}></User>
+      {/* {loggedInUser !== "" ? <Dashboard loggedInUser={loggedInUser} user={user}/> : null} */}
+      {loggedInUser !== "" ? <Genre loggedInUser={loggedInUser} user={user}/> : null} 
+    </>
   )
 }
 
