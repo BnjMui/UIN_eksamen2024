@@ -22,28 +22,25 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
   },[])
 
   return (
-    <main>
+    <main className="homepageContent">
         <h2>Hello, {loggedInUser}</h2>
-        <article>
+        <section className="a">
             <h3>Movies i would like to watch</h3>
-        </article>
-        <article>
-            
-            <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist"}</p>
+            <p>{WlMovieId == 0 ? "No movies found in watchlist" : "You have these movies in your watchlist:"}</p>
             {wishList?.map((e, i) => {
                         return (
                             <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
                         )
                     })}
-        </article>
-        <article>
+        </section>
+        <section className="b">
             <h3>Im going to watch with...</h3>
             {user?.map((data, i) => {
-            if (data.username !== loggedInUser){
-              return <Link key={i} to={`/dashboard/${data.username}`}>{data.username}</Link>
-            }
-          })}
-        </article>
+              if (data.username !== loggedInUser){
+                return <Link key={i} to={`/dashboard/${data.username}`}> {data.username}</Link>
+              }
+            })}
+        </section>
     </main>
   )
 }

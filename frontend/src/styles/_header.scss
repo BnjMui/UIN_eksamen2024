@@ -1,0 +1,26 @@
+.headerContent {
+     
+    background-color: #e1e1e1;
+    margin: 0;
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        align-items: baseline;
+        justify-content: space-between;
+    
+    }
+
+    li {
+        margin: 1rem;
+        font-weight: bold;
+
+    }
+}
+
+.whatToSee {
+    width: 40%;
+}

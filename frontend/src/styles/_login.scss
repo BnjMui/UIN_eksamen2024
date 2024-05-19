@@ -1,0 +1,23 @@
+.loginContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    padding: 5rem;
+    margin: 5rem 0 5rem 0;
+    
+
+        h2 {
+            color: chocolate;
+            width: 100%;
+            font-size: 30px;
+        }
+
+        p {
+            width: 100%;
+            font-size: 20px;
+        }
+        
+        
+}

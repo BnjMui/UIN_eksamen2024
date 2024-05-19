@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { RxAvatar } from "react-icons/rx";
 
 export default function Header({loggedInUser, setLoggedInUser}) {
 
@@ -10,10 +11,10 @@ export default function Header({loggedInUser, setLoggedInUser}) {
 
 
     return (
-        <header>
+        <header className="headerContent">
             <nav>
                 <ul>
-                    <li>
+                    <li className="whatToSee">
                         <Link to={'/'} >
                             <h1>What To See?</h1>
                         </Link>
@@ -28,7 +29,7 @@ export default function Header({loggedInUser, setLoggedInUser}) {
                             Scroll through generes
                         </Link>
                     </li>
-                    <li>{loggedInUser}</li>
+                    <li><RxAvatar />  {loggedInUser}</li>
                     <li>
                         <Link to={`/`}>
                             <button onClick={()=>{handleLogOut()}}>Log out</button>

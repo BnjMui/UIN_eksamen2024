@@ -1,0 +1,19 @@
+.dashboardContent {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 1rem;
+
+    h2 {
+        width: 100%;
+    }
+
+    section {
+        display: flex;
+    }
+
+    article {
+        width: 33%;
+    }
+}

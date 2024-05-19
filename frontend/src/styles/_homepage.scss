@@ -1,0 +1,40 @@
+.homepageContent {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+
+    h2 {
+        width: 100%;
+    }
+
+    h3 {
+        width: 50%;
+    }
+
+
+    section {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+    }
+
+    .b {
+            display: flex;
+
+        h3 {
+            justify-content: end;
+            display: flex;
+        }
+
+        a {
+            color: black;
+            padding: .5rem;
+            margin: .5rem;
+        }
+        
+    }
+
+    
+}

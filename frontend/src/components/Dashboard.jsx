@@ -74,11 +74,11 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
     },[])
 
     return (
-        <main>
+        <main className="dashboardContent">
             <h2>Recomendations for {loggedInUser} and {slug}</h2>
 
             <section>
-                <article>
+                <article className="dashboardContent">
                     <h3>Catch up!</h3>
                     <p>You have {WlMovieId.length} movies in common on your wishlists.</p>
                     {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
@@ -88,7 +88,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                             )
                         })} 
                 </article>
-                <article>
+                <article className="dashboardContent">
                     <h3>Go safe!</h3>
                     <p>You have {FmMovieId.length} favourite movies in common</p>
                         {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
@@ -98,7 +98,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                             )
                         })}
                 </article>
-                <article>
+                <article className="dashboardContent">
                     <h3>Explore!</h3>
                     <p>You have these genres in common. Chech out what movies to choose from</p>
                     <ul>
