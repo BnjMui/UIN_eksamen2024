@@ -9,8 +9,7 @@ export async function fetchMovies() {
     const data = await client.fetch (`*[_type == "movies"]{
         movieId,
         movieTitle,
-        "imgUrl": mainImage.asset->url,
-        movieGenres
+        "genre": movieGenres[]->{ _id, genre }
     }`)
     return data
     

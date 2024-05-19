@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {updateFavoriteGenres} from '../../sanity/services/userServices'
 import { fetchGenres } from '../../sanity/services/genreServices'
+import { Link } from 'react-router-dom'
 
 export default function Genre({loggedInUser, user}) {
   const [genres, setGenres] = useState([])
@@ -9,7 +10,6 @@ export default function Genre({loggedInUser, user}) {
     const getGenres = async () => {
       try {
         const data = await fetchGenres() // Bruker getGenres-funksjonen for å hente sjangrene
-        console.log(data)
         setGenres(data) // Oppdater sjangrene
       } catch (error) {
         console.error('Feil ved henting av sjangre:', error)
@@ -38,10 +38,12 @@ export default function Genre({loggedInUser, user}) {
     <section>
       <h2>Sjangre</h2>
       <ul>
-      {genres?.map((genre, index) => (
-          <li key={index} >
-            <p>{genre.genre}</p>
-            <button onClick={() => handleSubmit(genre.genre, user)}>Add to favorites</button>
+      {genres?.map((e, i) => (
+          <li key={i} >
+            <Link to={`/genres/${e.genre}`}>
+              <p>{e.genre}</p>
+              <button onClick={() => handleSubmit(e.genre, user)}>Add to favorites</button>
+            </Link>
           </li>
         ))}
       </ul>
