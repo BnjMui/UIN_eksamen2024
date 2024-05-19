@@ -8,31 +8,27 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
     const {slug} = useParams()
     let GCommon = false
 
-    //Mapping current users data. AKA favorite movies and wishlisted movies and favorite genre of logged in user.
-    const currentUserWishlist = []
+    //Mapping current user and compared users data. AKA favorite movies and wishlisted movies and favorite genre of logged in user.
+    //Wishlisted movies
+    let currentUserWishlist = []
     let WlMovieId = []
-
     user?.map(e => {
         if(e.username == loggedInUser) {
             e.wishlistedMovie !== null ? 
             e.wishlistedMovie.map(m => {
                 currentUserWishlist.push(m.movieId)
             }) : null
+            if(e.username == slug && e.wishlistedMovie !== null) {
+                e.wishlistedMovie.map(e => {
+                    if(currentUserWishlist.includes(e.movieId)) {
+                        WlMovieId.push(e.movieId)
+                    }
+                })
+            }
         }
     })
-
-    {user?.map((e) => {
-        if(e.username == {slug} && e.wishlistedMovie !== null) {
-            e.wishlistedMovie.map(e => {
-                if(currentUserWishlist.includes(e.movieId)) {
-                    WlMovieId.push(e.movieId)
-                }
-            })
-        }
-    })} 
-
     //Favorite movies
-    const currentUserFM = []
+    let currentUserFM = []
     let FmMovieId = []
     user?.map(e => {
         if(e.username == loggedInUser) {
@@ -41,18 +37,15 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                 currentUserFM.push(m.movieId)
             }) : null
         }
-    })
-    
-    {user?.map((e) => {
-        if(e.username == {slug} && e.favoriteMovies !== null) {
+        if(e.username == slug && e.favoriteMovies !== null) {
           e.favoriteMovies.map(e => {
                 if(currentUserFM.includes(e.movieId)) {
                     FmMovieId.push(e.movieId)
                 }
             })
         }
-    })} 
-
+    })
+    
     //Favorite Genres
     const currentUserFG = []
     user?.map(e => {
@@ -63,16 +56,16 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
             }) : null
         }
     })
+    
     //Fetching movies from api.
     useEffect(()=>{
-        if(currentUserFM != 0){
+        if(FmMovieId != 0){
             fetchMovieById(FmMovieId, setAPIFM)
         }
-        if(currentUserWishlist != 0){
+        if(WlMovieId != 0){
             fetchMovieById(WlMovieId, setAPIWL)
         }
-    },[])
-
+    },[slug, fetchMovieById])
     return (
         <main className="dashboardContent">
             <h2>Recomendations for {loggedInUser} and {slug}</h2>
@@ -81,20 +74,20 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                 <article className="dashboardContent">
                     <h3>Catch up!</h3>
                     <p>You have {WlMovieId.length} movies in common on your wishlists.</p>
-                    {currentUserWishlist == 0 ? <p>No common movies in wishlist.</p> : null}
+                    {currentUserWishlist.length == 0 ? <p>No common movies in wishlist.</p> : null}
                     {APIWL?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} />
                             )
                         })} 
                 </article>
                 <article className="dashboardContent">
                     <h3>Go safe!</h3>
                     <p>You have {FmMovieId.length} favourite movies in common</p>
-                        {currentUserFM == 0 ? <p>No favorite movies in common.</p> : null}
+                        {currentUserFM.length == 0 ? <p>No favorite movies in common.</p> : null}
                         {APIFM?.map((e, i) => {
                             return (
-                                <Moviecard key={i} imgUrl={e.primaryImage.url} titleText={e.originalTitleText.text} movieId={e.id} />
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} />
                             )
                         })}
                 </article>
