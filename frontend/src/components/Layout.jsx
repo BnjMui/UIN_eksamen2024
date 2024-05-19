@@ -9,8 +9,6 @@ export default function Layout({loggedInUser, setLoggedInUser, children}){
             setLoggedInUser(storedUser)
         }
     },[])
-    console.log(localStorage.getItem(`user`))
-    //console.log(loggedInUser)
     return(
         <>
         {loggedInUser === "" ? 

@@ -2,14 +2,16 @@ import { useEffect, useState } from "react"
 import Moviecard from "./Moviecard"
 import { useParams } from "react-router-dom"
 
-export default function Dashboard({loggedInUser, user}){
+export default function Dashboard({loggedInUser, user, fetchMovieById}){
     const [APIFM, setAPIFM] = useState([])
     const [APIWL, setAPIWL] = useState([])
     const {slug} = useParams()
     let GCommon = false
+
     //Mapping current users data. AKA favorite movies and wishlisted movies and favorite genre of logged in user.
     const currentUserWishlist = []
     let WlMovieId = []
+
     user?.map(e => {
         if(e.username == loggedInUser) {
             e.wishlistedMovie !== null ? 
@@ -18,6 +20,7 @@ export default function Dashboard({loggedInUser, user}){
             }) : null
         }
     })
+
     {user?.map((e) => {
         if(e.username == {slug} && e.wishlistedMovie !== null) {
             e.wishlistedMovie.map(e => {
@@ -25,10 +28,9 @@ export default function Dashboard({loggedInUser, user}){
                     WlMovieId.push(e.movieId)
                 }
             })
-            
         }
-
     })} 
+
     //Favorite movies
     const currentUserFM = []
     let FmMovieId = []
@@ -48,7 +50,6 @@ export default function Dashboard({loggedInUser, user}){
                     FmMovieId.push(e.movieId)
                 }
             })
-        
         }
     })} 
 
@@ -60,10 +61,9 @@ export default function Dashboard({loggedInUser, user}){
             e.favoriteGenres.map(g => {
                 currentUserFG.push(g.genre)
             }) : null
-            
         }
     })
-    //Counters for how many items in common.
+    //Fetching movies from api.
     useEffect(()=>{
         if(currentUserFM != 0){
             fetchMovieById(FmMovieId, setAPIFM)
@@ -73,27 +73,6 @@ export default function Dashboard({loggedInUser, user}){
         }
     },[])
 
-    //Function for API-reference
-
-    const fetchMovieById = async(e, API) => {
-        const url = `https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=${e}`
-        const options = {
-	        method: 'GET',
-	        headers: {
-		        'X-RapidAPI-Key': '83b786ce90mshb478f97f6df797cp1f84c1jsn1e5edab39268',
-		        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-	        }
-        }
-
-    try {
-	    const response = await fetch(url, options)
-	    const result = await response.json()
-	    console.log(result)
-        API(result.results)
-    } catch (error) {
-        console.error(error)
-        }
-    }
     return (
         <main>
             <h2>Recomendations for {loggedInUser} and {slug}</h2>
@@ -123,8 +102,8 @@ export default function Dashboard({loggedInUser, user}){
                     <h3>Explore!</h3>
                     <p>You have these genres in common. Chech out what movies to choose from</p>
                     <ul>
-                        {user?.map((e, i) => {
-                            if(e.username !== loggedInUser && e.favoriteGenres !== null) {
+                        {user?.map(e => {
+                            if(e.username == slug && e.favoriteGenres !== null) {
                                 return (e.favoriteGenres.map((g, i) => {
                                     if(currentUserFG.includes(g.genre)){
                                         GCommon = true
