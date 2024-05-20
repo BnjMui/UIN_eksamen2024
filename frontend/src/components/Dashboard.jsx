@@ -73,7 +73,6 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
             })
         }
     })
-    console.log(comparedWL)
     //Favorite Genres
     const currentUserFG = []
     user?.map(e => {

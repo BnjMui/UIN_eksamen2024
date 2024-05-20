@@ -12,7 +12,6 @@ export default function GenreMovie({fetchMovieById, loggedInUser, user}) {
     const getMovies = async () => {
         try {
             const data = await fetchMovies()
-            //console.log(data)
             setGenreMovies(data)
         } catch (error) {
             console.error('Feil:', error)
