@@ -13,7 +13,32 @@
         display: flex;
     }
 
-    article {
-        width: 33%;
+    li {
+        cursor: pointer;
     }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 900px) {
+
+    .dashboardContent {
+        flex-wrap: wrap;
+
+        section {
+            width: fit-content;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        article {
+            width: fit-content;
+        }
+    
+        h2 {
+            text-align: center;
+        }
+
+    }
+
+   
 }
