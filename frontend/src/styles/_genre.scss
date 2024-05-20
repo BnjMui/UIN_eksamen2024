@@ -8,6 +8,8 @@
         padding: .2rem;
         display: flex;
         align-items: baseline;
+        justify-content: space-between;
+        width: 20%;
     }
 
     button {
@@ -18,8 +20,15 @@
         cursor: pointer;
     }
 
-    p {
+    a {
         cursor: pointer;
+        margin: 0;
+        p{
+            margin: 0.2rem;
+        }
+    }
+    a:hover {
+        background-color: lightgray;
     }
 }
 
