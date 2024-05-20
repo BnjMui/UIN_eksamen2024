@@ -39,7 +39,7 @@ export default function GenreMovie({fetchMovieById, loggedInUser, user}) {
     }, [movieIdApi, fetchMovieById])
     return (
         <section className='genreMovies'>
-            <h2>Showing {slug} movies</h2>
+            <h2>Showing {ApiMovie.length} {slug} movies</h2>
             {ApiMovie.map((e, i) => {
                 return(
                     <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>

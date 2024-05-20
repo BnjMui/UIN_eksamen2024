@@ -48,7 +48,6 @@ export default function Genre({loggedInUser, user}) {
     })
     setFavoriteGenre(userFavoriteGenres)
 }, [loggedInUser, user])
-  console.log(favoriteGenre)
   return (
     <section className='genreContent'>
       <h2>Sjangre</h2>
