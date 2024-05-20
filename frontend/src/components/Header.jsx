@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { RxAvatar } from "react-icons/rx";
 
 export default function Header({loggedInUser, setLoggedInUser}) {
 
