@@ -70,7 +70,6 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
             })
         }
     })
-    console.log(currentUserWishlist)
     //Favorite Genres
     const currentUserFG = []
     user?.map(e => {
