@@ -70,8 +70,8 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
         <main className="dashboardContent">
             <h2>Recomendations for {loggedInUser} and {slug}</h2>
 
-            <section>
-                <article className="dashboardContent">
+            
+                <section>
                     <h3>Catch up!</h3>
                     <p>You have {WlMovieId.length} movies in common on your wishlists.</p>
                     {currentUserWishlist.length == 0 ? <p>No common movies in wishlist.</p> : null}
@@ -80,8 +80,8 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                                 <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                             )
                         })} 
-                </article>
-                <article className="dashboardContent">
+                </section>
+                <section>
                     <h3>Go safe!</h3>
                     <p>You have {FmMovieId.length} favourite movies in common</p>
                         {currentUserFM.length == 0 ? <p>No favorite movies in common.</p> : null}
@@ -90,8 +90,8 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                                 <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
                             )
                         })}
-                </article>
-                <article className="dashboardContent">
+                </section>
+                <section>
                     <h3>Explore!</h3>
                     <p>You have these genres in common. Chech out what movies to choose from</p>
                     <ul>
@@ -109,8 +109,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                         })}
                     </ul>
                         {GCommon == false ? <p>No common genres found.</p> : null}
-                </article>
-            </section>
+                </section>
         </main>
     )
 }

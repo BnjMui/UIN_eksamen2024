@@ -2,19 +2,24 @@
 
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
     margin: 1rem;
+    justify-content: space-between;
 
     h2 {
+        display: flex;
         width: 100%;
+        justify-content: center;
     }
 
     section {
-        display: flex;
+        flex-direction: column;
     }
 
-    li {
-        cursor: pointer;
+    ul {
+        list-style: none;
+        li {
+            cursor: pointer;
+        }
     }
 }
 
