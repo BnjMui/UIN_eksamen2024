@@ -39,7 +39,7 @@ export default function GenreMovie({fetchMovieById}) {
         }
     }, [movieIdApi, fetchMovieById])
     return (
-        <section>
+        <section className='genreMovies'>
             <h2>Showing {slug} movies</h2>
             {ApiMovie.map((e, i) => {
                 return(

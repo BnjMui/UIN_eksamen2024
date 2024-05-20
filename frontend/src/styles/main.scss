@@ -21,7 +21,7 @@ body {
 }
 
 .button {
-    background-color: chocolate;
+    background-color: #214b77;
     color: #e1e1e1;
     border: none;
     margin: .5rem;
@@ -31,5 +31,17 @@ body {
     font-weight: bold;
     cursor: pointer;
 
+}
+
+.moviecardContent {
+    background-color: #e1e1e1;
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 250px;
+
+    img {
+        max-width: 250px;
+        max-height: 365px;
+    }
 }
 

@@ -11,8 +11,6 @@
     }
 
     button {
-        background-color: chocolate;
-        color: #e1e1e1;
         border: none;
         border-radius: 4px;
         padding: .2rem;
@@ -23,4 +21,21 @@
     p {
         cursor: pointer;
     }
+}
+
+.genreMovies {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+
+    h2 {
+        width: 100%;
+    }
+
+    article {
+        max-width: 250px;
+        min-width: 250px;
+    }
+
 }

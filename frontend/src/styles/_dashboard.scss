@@ -13,16 +13,12 @@
         display: flex;
     }
 
-    article {
-        width: 33%;
-    }
-
     li {
         cursor: pointer;
     }
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 200px) and (max-width: 900px) {
 
     .dashboardContent {
         flex-wrap: wrap;

@@ -36,14 +36,14 @@ export default function Genre({loggedInUser, user}) {
   }
   return (
     <section className='genreContent'>
-      <h2>Sjangre</h2>
+      <h2>Generes</h2>
       <ul>
       {genres?.map((e, i) => (
           <li key={i} >
             <Link to={`/genres/${e.genre}`}>
               <p>{e.genre}</p>
-              <button onClick={() => handleSubmit(e.genre, user)}>Add to favorites</button>
             </Link>
+            <button onClick={() => handleSubmit(e.genre, user)}>Add to favorites</button>
           </li>
         ))}
       </ul>

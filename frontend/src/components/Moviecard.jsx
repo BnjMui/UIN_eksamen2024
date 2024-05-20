@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
     
     return (
         <article className="moviecardContent">
-        <Link to={`https://www.imdb.com/title/${movieId}/`} target="_blanc">
+            <Link to={`https://www.imdb.com/title/${movieId}/`} target="_blanc">
             {imgUrl ? <img src={imgUrl}/> : <p>This movie has no current poster</p>}
-            <p>{titleText}</p>
-        </Link>
+                <p>{titleText}</p>
+            </Link>
         </article>
     )
 }
