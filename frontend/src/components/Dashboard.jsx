@@ -39,7 +39,7 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
             })
         }
         if(e.username == slug && e.favoriteMovies !== null) {
-          e.favoriteMovies.map(e => {
+          e.favoriteMovies?.map(e => {
                 if(currentUserFM.includes(e.movieId)) {
                     FmMovieId.push(e.movieId)
                 }
@@ -49,9 +49,10 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
     //A-krav
     //Users favorites compared
     let comparedFM = []
+    let comparedWL = []
     user?.map(e => {
         if(e.username == slug) {
-            e.wishlistedMovie.map(w => {
+            e.wishlistedMovie?.map(w => {
                 if(currentUserFM.includes(w.movieId)) {
                     !WlMovieId.includes(w.movieId) ?
                     comparedFM.push(w.movieId)
@@ -59,20 +60,17 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                 }
             })
         }
-    })
-    //Users wishlist compared
-    let comparedWL = []
-    user?.map(e => {
-        if(e.username == loggedInUser) {
-            e.wishlistedMovie.map(w => {
+        if(e.username == slug) {
+            e.favoriteMovies?.map(w => {
                 if(currentUserWishlist.includes(w.movieId)) {
                     !FmMovieId.includes(w.movieId) ?
                     comparedWL.push(w.movieId)
                     :null
-                }
+        }
             })
         }
     })
+    console.log(currentUserWishlist)
     //Favorite Genres
     const currentUserFG = []
     user?.map(e => {
