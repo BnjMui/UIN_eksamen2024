@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom"
 export default function Dashboard({loggedInUser, user, fetchMovieById}){
     const [APIFM, setAPIFM] = useState([])
     const [APIWL, setAPIWL] = useState([])
+    const [APIComparedFM, setAPIComparedFM] = useState([])
+    const [APIComparedWL, setAPIComparedWL] = useState([])
     const {slug} = useParams()
     let GCommon = false
 
@@ -13,29 +15,28 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
     let currentUserWishlist = []
     let WlMovieId = []
     user?.map(e => {
-        if(e.username == loggedInUser) {
-            e.wishlistedMovie !== null ? 
+        if(e.username == loggedInUser && e.wishlistedMovie !== null) {
             e.wishlistedMovie.map(m => {
                 currentUserWishlist.push(m.movieId)
-            }) : null
-            if(e.username == slug && e.wishlistedMovie !== null) {
-                e.wishlistedMovie.map(e => {
+            })
+        }
+        if(e.username == slug && e.wishlistedMovie != null) {
+            e.wishlistedMovie.map(e => {
                     if(currentUserWishlist.includes(e.movieId)) {
                         WlMovieId.push(e.movieId)
                     }
                 })
             }
-        }
-    })
+            
+        })
     //Favorite movies
     let currentUserFM = []
     let FmMovieId = []
     user?.map(e => {
-        if(e.username == loggedInUser) {
-            e.favoriteMovies !== null ?
+        if(e.username == loggedInUser && e.favoriteMovies != null) {
             e.favoriteMovies.map(m => {
                 currentUserFM.push(m.movieId)
-            }) : null
+            })
         }
         if(e.username == slug && e.favoriteMovies !== null) {
           e.favoriteMovies.map(e => {
@@ -45,7 +46,34 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
             })
         }
     })
-    
+    //A-krav
+    //Users favorites compared
+    let comparedFM = []
+    user?.map(e => {
+        if(e.username == slug) {
+            e.wishlistedMovie.map(w => {
+                if(currentUserFM.includes(w.movieId)) {
+                    !WlMovieId.includes(w.movieId) ?
+                    comparedFM.push(w.movieId)
+                    :null
+                }
+            })
+        }
+    })
+    //Users wishlist compared
+    let comparedWL = []
+    user?.map(e => {
+        if(e.username == loggedInUser) {
+            e.wishlistedMovie.map(w => {
+                if(currentUserWishlist.includes(w.movieId)) {
+                    !FmMovieId.includes(w.movieId) ?
+                    comparedWL.push(w.movieId)
+                    :null
+                }
+            })
+        }
+    })
+    console.log(comparedWL)
     //Favorite Genres
     const currentUserFG = []
     user?.map(e => {
@@ -64,6 +92,12 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
         }
         if(WlMovieId != 0){
             fetchMovieById(WlMovieId, setAPIWL)
+        }
+        if(comparedFM != 0){
+            fetchMovieById(comparedFM, setAPIComparedFM)
+        }
+        if(comparedWL != 0){
+            fetchMovieById(comparedWL, setAPIComparedWL)
         }
     },[slug, fetchMovieById])
     return (
@@ -109,6 +143,21 @@ export default function Dashboard({loggedInUser, user, fetchMovieById}){
                         })}
                     </ul>
                         {GCommon == false ? <p>No common genres found.</p> : null}
+                </section>
+                <section>
+                    <h3>Teach eachother</h3>
+                    <p>Movies in your favorites that {slug} has in their wishlist, take a look!</p>
+                    {APIComparedFM?.map((e, i) => {
+                            return (
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
+                            )
+                        })}
+                    <p>Movies in your wishlist that, {slug} has in their favorites</p>
+                        {APIComparedWL?.map((e, i) => {
+                            return (
+                                <Moviecard key={i} imgUrl={e.primaryImage?.url} titleText={e.originalTitleText.text} movieId={e.id} loggedInUser={loggedInUser} user={user}/>
+                            )
+                        })}
                 </section>
         </main>
     )

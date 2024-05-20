@@ -19,7 +19,6 @@ import { updateFavoriteMovies, updateWishList } from "../../sanity/services/user
                 })
             }
         })
-        console.log(wishlistedMovies)
         setUserFavoriteMovies(favoriteMovies)
         setUserWishlistedMovies(wishlistedMovies)
      },[user, loggedInUser])

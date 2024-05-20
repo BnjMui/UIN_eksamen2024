@@ -38,7 +38,7 @@ export default function Homepage({loggedInUser, user, fetchMovieById}) {
             <ul>
               {user?.map((data, i) => {
                 if (data.username !== loggedInUser){
-                  return <li><Link key={i} to={`/dashboard/${data.username}`}> {data.username}</Link></li>
+                  return <li key={i}><Link to={`/dashboard/${data.username}`}> {data.username}</Link></li>
                 }
               })}
             </ul>
