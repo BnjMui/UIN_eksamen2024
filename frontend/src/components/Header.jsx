@@ -14,7 +14,7 @@ export default function Header({loggedInUser, setLoggedInUser}) {
             <nav>
                 <ul>
                     <li className="whatToSee"><Link to={'/'}><h1>What To See?</h1></Link></li>
-                    <li><Link to={`/`}><button className="button">What do i want to watch?</button></Link></li>
+                    <li><Link to={`/`}><button id="whatToWatch" className="button">What do i want to watch?</button></Link></li>
                     <li><Link to='/genres'>Scroll through generes</Link></li>
                     <li>{loggedInUser}</li>
                     <li><Link to={`/`}><button className="button" onClick={()=>{handleLogOut()}}>Log out</button></Link></li>
